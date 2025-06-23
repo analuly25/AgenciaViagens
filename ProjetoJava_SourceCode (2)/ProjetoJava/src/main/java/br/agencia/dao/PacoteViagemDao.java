@@ -106,7 +106,7 @@ public class PacoteViagemDao {
     }
 
     public boolean temClientesAssociados(int idPacote) {
-        String sql = "SELECT COUNT(*) FROM Pedido WHERE idPacote = ?";
+        String sql = "SELECT COUNT(*) FROM Pedido WHERE idPacoteViagem = ?";
         try (
                 Connection conn = ConnectionFactory.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
