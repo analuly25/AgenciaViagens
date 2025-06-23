@@ -46,10 +46,10 @@ public class PedidoPanel extends JPanel {
         salvarBtn.addActionListener(e -> salvarPedido());
 
         buscaIdField = new JTextField();
-        buscarBtn = new JButton("Buscar por ID");
+        buscarBtn = new JButton("Buscar por ID 🔍");
         buscarBtn.addActionListener(e -> buscarPedido());
 
-        excluirBtn = new JButton("Excluir por ID");
+        excluirBtn = new JButton("Excluir por ID ❌");
         excluirBtn.addActionListener(e -> excluirPedido());
 
         JPanel botoesFormPanel = new JPanel();
