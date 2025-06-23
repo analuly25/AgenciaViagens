@@ -52,10 +52,10 @@ public class ClientePanel extends JPanel {
         salvarBtn.addActionListener(e -> salvarCliente());
 
         buscaIdField = new JTextField();
-        buscarBtn = new JButton("Buscar por ID");
+        buscarBtn = new JButton("Buscar por ID 🔍");
         buscarBtn.addActionListener(e -> buscarCliente());
 
-        excluirBtn = new JButton("Excluir por ID");
+        excluirBtn = new JButton("Excluir por ID ❌");
         excluirBtn.addActionListener(e -> excluirCliente());
 
         JPanel botoesFormPanel = new JPanel();
