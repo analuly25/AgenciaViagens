@@ -53,10 +53,10 @@ public class PacotePanel extends JPanel {
         salvarBtn.addActionListener(e -> salvarPacote());
 
         buscaIdField = new JTextField();
-        buscarBtn = new JButton("Buscar por ID");
+        buscarBtn = new JButton("Buscar por ID 🔍");
         buscarBtn.addActionListener(e -> buscarPacote());
 
-        excluirBtn = new JButton("Excluir por ID");
+        excluirBtn = new JButton("Excluir por ID ❌");
         excluirBtn.addActionListener(e -> excluirPacote());
 
         JPanel botoesFormPanel = new JPanel();
