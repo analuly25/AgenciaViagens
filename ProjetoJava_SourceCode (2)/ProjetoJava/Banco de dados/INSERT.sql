@@ -28,12 +28,12 @@ INSERT INTO Pedido (idClientes, idPacoteViagem, data_viagem, valor_total, status
 
 
 INSERT INTO PedidoServico (Pedido_idPedido, ServicoAdicional_idServicoAdicional, quantidade, preco_unitario) VALUES
-(5, 2, 1, 250.00),
-(5, 3, 1, 300.00),
-(7, 2, 2, 500.00),
-(6, 4, 3, 600.00),
-(5, 1, 2, 360.00),
-(7, 3, 1, 300.00),
-(8, 4, 2, 240.00),
-(8, 1, 2, 360.00);
+(1, 2, 1, 250.00),
+(1, 3, 1, 300.00),
+(2, 2, 2, 500.00),
+(3, 4, 3, 600.00),
+(1, 1, 2, 360.00),
+(2, 3, 1, 300.00),
+(4, 4, 2, 240.00),
+(4, 1, 2, 360.00);
 
