@@ -33,7 +33,7 @@ public class ServicoAdicionalDAO {
 
     public ServicoAdicional buscarPorId(int id) {
         ServicoAdicional servico = null;
-        String sql = "SELECT * FROM ServicoAdicional WHERE idServico = ?";
+        String sql = "SELECT * FROM ServicoAdicional WHERE idServicoAdicional = ?";
 
         try (
                 Connection conn = ConnectionFactory.getConnection();
@@ -44,7 +44,7 @@ public class ServicoAdicionalDAO {
 
             if (rs.next()) {
                 servico = new ServicoAdicional();
-                servico.setIdServico(rs.getInt("idServico"));
+                servico.setIdServicoAdicional(rs.getInt("idServico"));
                 servico.setNome(rs.getString("nome"));
                 servico.setDescricao(rs.getString("descricao"));
                 servico.setPreco(rs.getDouble("preco"));
@@ -67,7 +67,7 @@ public class ServicoAdicionalDAO {
 
             while (rs.next()) {
                 ServicoAdicional servico = new ServicoAdicional();
-                servico.setIdServico(rs.getInt("idServico"));
+                servico.setIdServicoAdicional(rs.getInt("idServicoAdicional"));
                 servico.setNome(rs.getString("nome"));
                 servico.setDescricao(rs.getString("descricao"));
                 servico.setPreco(rs.getDouble("preco"));
@@ -81,7 +81,7 @@ public class ServicoAdicionalDAO {
     }
 
     public void excluir(int id) {
-        String sql = "DELETE FROM ServicoAdicional WHERE idServico = ?";
+        String sql = "DELETE FROM ServicoAdicional WHERE idServicoAdicional = ?";
 
         try (
                 Connection conn = ConnectionFactory.getConnection();
@@ -96,5 +96,6 @@ public class ServicoAdicionalDAO {
         }
     }
 }
+
 
 
