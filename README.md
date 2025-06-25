@@ -1,71 +1,41 @@
-# Sistema de Agência de Viagens
+# Trabalho - Linguagem e Técnicas de Programação II
 
-Este documento contém as instruções para configurar e executar o sistema de agência de viagens com interface gráfica (GUI) em seu ambiente local.
+Ana Luiza Gomes Santana - 22409471
 
-## Requisitos
+Bárbara Parente de Carvalho Soares - 22402134
 
-*   Java Development Kit (JDK) 11 ou superior
-*   MySQL Server
-*   Maven (para compilar o projeto, se necessário)
 
-## Configuração do Banco de Dados
+-----------------------------------------------------------------------------------------------------------------------------------
 
-1.  **Crie o banco de dados:**
-    Abra seu cliente MySQL (por exemplo, MySQL Workbench, linha de comando) e execute o script `CreateTable.sql` para criar a estrutura do banco de dados.
+# Sistema de Agência de Viagens 
 
-    ```sql
-    SOURCE path/to/CreateTable.sql;
-    ```
+## 📄 Descrição do Sistema
 
-2.  **Popule o banco de dados (opcional):**
-    Se desejar, execute o script `INSERT.sql` para popular o banco de dados com dados de exemplo.
+Este sistema foi desenvolvido com o objetivo de gerenciar o cadastro de **clientes**, **pacotes de viagens** e **serviços adicionais** para uma agência de turismo.  
 
-    ```sql
-    SOURCE path/to/INSERT.sql;
-    ```
+A aplicação permite:
+- O cadastro de **clientes nacionais** (com CPF) e **clientes estrangeiros** (com passaporte), garantindo a validação dos documentos conforme a nacionalidade.
+- O registro de **pacotes de viagem** com destino, descrição, duração, preço e tipo (ex: nacional, internacional).
+- A associação entre clientes e pacotes, permitindo que um **cliente contrate mais de um pacote** de viagem, por meio de **pedidos** registrados no sistema.
+- A inclusão de **serviços adicionais** a cada pedido, como translado, passeios turísticos, aluguel de veículos, entre outros, com controle individual de valor e descrição.
 
-3.  **Configure a conexão com o banco de dados:**
-    O sistema espera que o banco de dados MySQL esteja rodando localmente na porta padrão (3306) e que as credenciais de acesso sejam `root` para o usuário e `babi2006` para a senha. Se suas credenciais forem diferentes, você precisará editar o arquivo `ConnectionFactory.java` localizado em `src/main/java/br/agencia/util/ConnectionFactory.java` e recompilar o projeto.
+### 🔍 Funcionalidades implementadas:
+- Cadastro de clientes (nacionais e estrangeiros)
+- Cadastro de pacotes de viagem
+- Registro de pedidos (cliente + pacote)
+- Inclusão de serviços adicionais em pedidos
+- Relatórios:
+  - Pacotes contratados por cliente
+  - Clientes que contrataram determinado pacote
 
-    ```java
-    private static final String URL = "jdbc:mysql://localhost:3306/agencia_viagens";
-    private static final String USER = "root";
-    private static final String PASS = "babi2006";
-    ```
+### 🛠️ Tecnologias utilizadas:
+- Linguagem: Java
+- Banco de Dados: MySQL
+- Conexão: JDBC
+- Organização do código: DAO, Model, View (menus via terminal)
 
-## Executando a Aplicação
-
-### Opção 1: Executar o JAR (Recomendado)
-
-1.  **Localize o arquivo JAR:**
-    O arquivo executável da aplicação está localizado em `target/AgenciaViagens-1.0-SNAPSHOT-jar-with-dependencies.jar`.
-
-2.  **Execute a aplicação:**
-    Abra um terminal ou prompt de comando, navegue até o diretório raiz do projeto (`ProjetoJava`) e execute o seguinte comando:
-
-    ```bash
-    java -jar target/AgenciaViagens-1.0-SNAPSHOT-jar-with-dependencies.jar
-    ```
-
-### Opção 2: Compilar e Executar com Maven
-
-Se você fez alterações no código ou as credenciais do banco de dados, precisará recompilar o projeto.
-
-1.  **Navegue até o diretório do projeto:**
-    Abra um terminal ou prompt de comando e navegue até o diretório raiz do projeto (`ProjetoJava`).
-
-2.  **Compile o projeto:**
-
-    ```bash
-    mvn clean install
-    ```
-
-3.  **Execute a aplicação:**
-
-    ```bash
-    mvn exec:java
-    ```
-
+### O CÓDIGO PARA RODAR COM A INTERFACE GRÁFICA É O MainGUI
+### QUANDO O SISTEMA ABRIR A INTERFACE GRÁFICA, ESPANDE A TELA
 ## Uso da Interface Gráfica
 
 Após iniciar a aplicação, uma janela com abas será exibida. Cada aba corresponde a uma funcionalidade principal do sistema:
