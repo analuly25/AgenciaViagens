@@ -10,10 +10,10 @@ INSERT INTO Clientes (nome, cpf, passaporte, telefone, email, nacionalidade) VAL
 ('Bruno Andrade', '098.876.750.76', NULL, '(82) 90919-7382', 'andradebruno@gmail.com', 'NACIONAL'),
 ('Laura Carvalho', '609.765.504.32', NULL, '(61) 90818-7388', 'laura.carvalho@gmail.com', 'NACIONAL'),
 ('Izabel França', NULL, 'US07271595', '(44) 72548-7388', 'izabelfranca90@gmail.com', 'ESTRANGEIRO'),
-('João Pedro dos Santos', '091.728.382.78', '(21) 96721-2346', 'jpedrosantos@gmail.com', 'NACIONAL'),
-('Júlia Aragão', '826.409.637.12', '(15) 98788-0919', 'aragaojulia@gmail.com', 'NACIONAL')
-('Bruna Smith', NULL, 'US9102739', '(44) 72819-0183', 'smithbru@gmail.com', 'ESTRANGEIRO')
-('Felipe Queiroz', '444.098.267.12', '(61) 90876-0919', 'fequeiroz@gmail.com', 'NACIONAL');
+('João Pedro dos Santos', '091.728.382.78', NULL, '(21) 96721-2346', 'jpedrosantos@gmail.com', 'NACIONAL'),
+('Júlia Aragão', '826.409.637.12', NULL, '(15) 98788-0919', 'aragaojulia@gmail.com', 'NACIONAL'),
+('Bruna Smith', NULL, 'US9102739', '(44) 72819-0183', 'smithbru@gmail.com', 'ESTRANGEIRO'),
+('Felipe Queiroz', '444.098.267.12', NULL, '(61) 90876-0919', 'fequeiroz@gmail.com', 'NACIONAL');
 
 INSERT INTO PacoteViagem (nome, destino, descricao, duracao_dias, preco, tipo) VALUES
 ('Sol e Mar em Maceió', 'Maceió', 'Pacote com passeios pelas praias e piscinas naturais de Maceió.', 5, 1899.90, 'Nacional'),
@@ -27,10 +27,9 @@ INSERT INTO PacoteViagem (nome, destino, descricao, duracao_dias, preco, tipo) V
 ('Inverno em Bariloche', 'Bariloche' ,'Hospedagem próxima ao centro de esqui e passeio ao Cerro Catedral.', 6, 6500.00, 'Internacional'),
 ('Maragogi Azul-Turquesa', 'Maragogi', 'Passeio às piscinas naturais, traslado e hospedagem.', 4, 2900.00, 'Nacional'),
 ('Pantanal Selvagem', 'Barão do Melgaço', 'Lodge ecológico, safáris fotográficos, alimentação completa.', 4, 2000.00, 'Nacional'),
-('Rio 360°', 'Rio de Janeiro', 'Visita ao Cristo Redentor, Pão de Açúcar e Copacabana Palace'. 5, 4000.00, 'Nacional'),
+('Rio 360°', 'Rio de Janeiro', 'Visita ao Cristo Redentor, Pão de Açúcar e Copacabana Palace.', 5, 4000.00, 'Nacional'),
 ('Orlando Diversão Total', 'Orlando', 'Hospedagem para 4 parques da Disney e hospedagem próxima.', 6, 8000.00, 'Internacional'),
-('Encantos de Marrakech', 'Marrocos', 'City tour guiado, passeio ao deserto e jantar típico.', 7, 5000.00, 'Internacional')
-  ;
+('Encantos de Marrakech', 'Marrocos', 'City tour guiado, passeio ao deserto e jantar típico.', 7, 5000.00, 'Internacional');
 
 INSERT INTO ServicoAdicional (nome, descricao, preco) VALUES
 ('Traslado Aeroporto-Hotel', 'Serviço de transporte entre o aeroporto e o hotel.', 180.00),
@@ -40,7 +39,7 @@ INSERT INTO ServicoAdicional (nome, descricao, preco) VALUES
 ('Seguro Viagem', 'Cobertura para emergências médicas e extravio de bagagem.', 120.00),
 ('Jantar Especial', 'Jantar em restaurante típico local incluso no pacote.', 200.00),
 ('Café da Manhã no Quarto', 'Café da manhã será levado no quarto do hóspede.', 100.00),
-('Aluguel de Veículo', 'Aluguel de veículo para maior liberdade de locomoção.', 1000,00),
+('Aluguel de Veículo', 'Aluguel de veículo para maior liberdade de locomoção.', 1000.00),
 ('Kit Viagem', 'Kit para maior conforto na viagem com máscara de dormir, manta e fone de ouvido.', 80.00),
 ('Reserva de Spa', 'Horário marcado em Spa do hotel.', 150.00),
 ('Chip Internacional', 'Emissão de chip internacional para telefone com banda larga.', 100.00),
