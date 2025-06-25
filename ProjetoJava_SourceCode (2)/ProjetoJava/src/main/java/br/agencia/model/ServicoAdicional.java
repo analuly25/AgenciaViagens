@@ -1,7 +1,7 @@
 package br.agencia.model;
 
 public class ServicoAdicional {
-    private int idServico;
+    private int idServicoAdicional;
     private String nome;
     private String descricao;
     private double preco;
@@ -17,8 +17,8 @@ public class ServicoAdicional {
     }
 
     // Getters e Setters
-    public int getIdServico() { return idServico; }
-    public void setIdServico(int idServico) { this.idServico = idServico; }
+    public int getIdServicoAdicional() { return idServicoAdicional; }
+    public void setIdServicoAdicional(int idServicoAdicional) { this.idServicoAdicional = idServicoAdicional; }
 
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
@@ -29,5 +29,7 @@ public class ServicoAdicional {
     public double getPreco() { return preco; }
     public void setPreco(double preco) { this.preco = preco; }
 }
+
+
 
 
