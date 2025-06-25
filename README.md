@@ -34,8 +34,41 @@ A aplicação permite:
 - Conexão: JDBC
 - Organização do código: DAO, Model, View (menus via terminal)
 
+## 🖥 Pré‑requisitos
+
+- JDK: 11 ou superior, testado com OpenJDK 17
+
+- Maven: 3.8 ou superior, para compilar o projeto
+
+- MySQL: 8.0 ou superior, porta padrão 3306
+
+Dica: use o MySQL Workbench ou DBeaver para executar os scripts com apenas dois cliques.
+
 ### O CÓDIGO PARA RODAR COM A INTERFACE GRÁFICA É O MainGUI
 ### QUANDO O SISTEMA ABRIR A INTERFACE GRÁFICA, ESPANDE A TELA
+
+## 🛠️ 1. Configurando o banco de dados
+
+1. Crie o schema:
+
+ -- no Workbench (ou terminal)
+SOURCE "Banco de dados/CreateTable.sql";
+
+2. Insira dados de exemplo (opcional):
+   
+SOURCE "Banco de dados/INSERT.sql";
+
+3. Verifique credenciais:
+
+O arquivo src/main/java/br/agencia/util/ConnectionFactory.java está configurado assim:
+"" 
+private static final String URL  = "jdbc:mysql://localhost:3306/agencia_viagens";
+private static final String USER = "root";
+private static final String PASS = "ceub123456"; 
+"" 
+
+- Ajuste USER, PASS e, se necessário, URL para refletir seu ambiente.
+  
 ## Uso da Interface Gráfica
 
 Após iniciar a aplicação, uma janela com abas será exibida. Cada aba corresponde a uma funcionalidade principal do sistema:
