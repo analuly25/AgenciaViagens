@@ -83,7 +83,7 @@ public class ServicoAdicionalPanel extends JPanel {
         tableModel.setRowCount(0);
         List<ServicoAdicional> servicos = servicoAdicionalDAO.listar();
         for (ServicoAdicional servico : servicos) {
-            tableModel.addRow(new Object[]{servico.getIdServico(), servico.getNome(), servico.getDescricao(), servico.getPreco()});
+            tableModel.addRow(new Object[]{servico.getIdServicoAdicional(), servico.getNome(), servico.getDescricao(), servico.getPreco()});
         }
     }
 
@@ -93,5 +93,7 @@ public class ServicoAdicionalPanel extends JPanel {
         precoField.setText("");
     }
 }
+
+
 
 
