@@ -63,7 +63,9 @@ SOURCE "Banco de dados/INSERT.sql";
 O arquivo src/main/java/br/agencia/util/ConnectionFactory.java está configurado assim:
 
 > private static final String URL  = "jdbc:mysql://localhost:3306/agencia_viagens";
+
 > private static final String USER = "root";
+
 > private static final String PASS = "ceub123456"; 
 
 - Ajuste USER, PASS e, se necessário, URL para refletir seu ambiente.
