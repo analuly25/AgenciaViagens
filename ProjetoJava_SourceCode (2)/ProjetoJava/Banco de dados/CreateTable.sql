@@ -81,6 +81,9 @@ CREATE TABLE IF NOT EXISTS PedidoServico (
   CONSTRAINT chk_quantidade_positiva CHECK (quantidade > 0),
   CONSTRAINT chk_preco_unitario_positivo CHECK (preco_unitario > 0)
 );
+
+ALTER TABLE PedidoServico MODIFY preco_unitario DECIMAL(10,2) NULL;
+
 CREATE INDEX idx_clientes_nome ON Clientes(nome);
 CREATE INDEX idx_clientes_nacionalidade ON Clientes(nacionalidade);
 CREATE INDEX idx_pacote_destino ON PacoteViagem(destino);
