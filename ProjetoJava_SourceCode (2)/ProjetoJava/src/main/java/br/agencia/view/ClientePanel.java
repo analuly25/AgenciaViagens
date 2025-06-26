@@ -103,6 +103,11 @@ public class ClientePanel extends JPanel {
             return;
         }
 
+        if (!isValidTelefone(telefone)) {
+            JOptionPane.showMessageDialog(this, "Telefone inválido! Use apenas números, parênteses, hífen e ao menos 10 dígitos.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         if ("NACIONAL".equals(tipo) && !isValidCPF(doc)) {
             JOptionPane.showMessageDialog(this, "CPF inválido!", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
             return;
@@ -171,6 +176,17 @@ public class ClientePanel extends JPanel {
         tipoCombo.setSelectedIndex(0);
         buscaIdField.setText("");
     }
+
+    // Validação de telefone: só números, parênteses, espaço e hífen, e pelo menos 10 dígitos
+    private boolean isValidTelefone(String telefone) {
+        if (!telefone.matches("^[0-9()\\-\\s]+$")) {
+            return false;
+        }
+        // Remove tudo que não for número e verifica se tem ao menos 10 dígitos
+        String somenteNumeros = telefone.replaceAll("[^0-9]", "");
+        return somenteNumeros.length() >= 10;
+    }
+
 
     // Validação de e-mail (simplificada)
     private boolean isValidEmail(String email) {
