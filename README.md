@@ -52,15 +52,16 @@ Dica: use o MySQL Workbench ou DBeaver para executar os scripts com apenas dois
 1. Crie o schema:
 
  -- no Workbench (ou terminal)
-SOURCE "Banco de dados/CreateTable.sql";
+
+> SOURCE "Banco de dados/CreateTable.sql";
 
 2. Insira dados de exemplo (opcional):
    
-SOURCE "Banco de dados/INSERT.sql";
+> SOURCE "Banco de dados/INSERT.sql";
 
 3. Verifique credenciais:
 
-O arquivo src/main/java/br/agencia/util/ConnectionFactory.java está configurado assim:
+O arquivo _src/main/java/br/agencia/util/ConnectionFactory.java_ está configurado assim:
 
 > private static final String URL  = "jdbc:mysql://localhost:3306/agencia_viagens";
 
@@ -69,7 +70,28 @@ O arquivo src/main/java/br/agencia/util/ConnectionFactory.java está configurado
 > private static final String PASS = "ceub123456"; 
 
 - Ajuste USER, PASS e, se necessário, URL para refletir seu ambiente.
-  
+
+ ## 🚀 2. Compilando o projeto
+
+Abra um terminal na pasta _ProjetoJava_SourceCode(2)/ProjetoJava_ e execute:
+
+> mvn clean package -DskipTests
+
+Isso criará o arquivo:
+
+ > target/AgenciaViagens-1.0-SNAPSHOT-jar-with-dependencies.jar
+
+-- Se estiver usando IntelliJ IDEA ou Eclipse, basta Import → Maven Project, aguardar o download das dependências e executar a classe MainGUI.
+
+## 🧐 4. Resolução de problemas comuns
+
+| Sintoma | Causa Provável | Solução |
+| ------ | ------ | ------|
+| `java.sql.SQLException: Access denied` | Usuário/senha MySQL incorretos | Ajustar `USER` e `PASS` em `ConnectionFactory.java`|
+| `Unknown database 'agencia_viagens'` | Schema não criado | Executar `CreateTable.sql` |
+| `No suitable driver` | Dependência MySQL faltando | Verificar se Maven baixou `mysql-connector-j` |
+| GUI não abre | JDK abaixo da versão 11 | Atualizar JDK |
+
 ## Uso da Interface Gráfica
 
 Após iniciar a aplicação, uma janela com abas será exibida. Cada aba corresponde a uma funcionalidade principal do sistema:
@@ -81,4 +103,3 @@ Após iniciar a aplicação, uma janela com abas será exibida. Cada aba corresp
 *   **Relacionamentos:** Telas para contratar pacotes, adicionar serviços a pedidos, consultar pacotes por cliente e clientes por pacote.
 
 Explore as abas para utilizar as funcionalidades do sistema. As validações de entrada de dados serão exibidas através de mensagens de erro, quando aplicável.
-
