@@ -6,6 +6,8 @@ import br.agencia.model.ClienteNacional;
 import br.agencia.model.PacoteViagem;
 import br.agencia.model.Pedido;
 import br.agencia.util.ConnectionFactory;
+import br.agencia.model.ServicoAdicional;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -133,11 +135,12 @@ public class PedidoDao {
 
     public List<Cliente> buscarClientesPorPacote(int idPacote) {
         List<Cliente> clientes = new ArrayList<>();
-        String sql =  "SELECT c.*,                               " + 
-                "IFNULL(c.cpf, c.passaporte) AS documento " +
-                "FROM   Clientes c                          " +
-                "JOIN   Pedido   p ON p.idClientes = c.idClientes " +
-                "WHERE  p.idPacoteViagem = ?";
+        String sql = "SELECT c.*, cn.cpf, ce.passaporte FROM Cliente c " +
+                     "JOIN Pedido p ON c.idClientes = p.idClientes " +
+                     "LEFT JOIN ClienteNacional cn ON c.idClientes = cn.idClientes " +
+                     "LEFT JOIN ClienteEstrangeiro ce ON c.idClientes = ce.idClientes " +
+                     "WHERE p.idPacoteViagem = ?";
+
         try (
                 Connection conn = ConnectionFactory.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -162,19 +165,45 @@ public class PedidoDao {
     }
 
     public void adicionarServico(int idPedido, int idServico) {
-        String sql = "INSERT INTO PedidoServico (idPedido, idServico) VALUES (?, ?)";
-
+        String sql = "INSERT INTO PedidoServico (Pedido_idPedido, ServicoAdicional_idServicoAdicional) VALUES (?, ?)";
         try (
                 Connection conn = ConnectionFactory.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
+                PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
             stmt.setInt(1, idPedido);
             stmt.setInt(2, idServico);
             stmt.executeUpdate();
-            System.out.println("Serviço adicionado ao pedido com sucesso!");
         } catch (SQLException e) {
             System.out.println("Erro ao adicionar serviço ao pedido: " + e.getMessage());
         }
     }
+
+    public List<ServicoAdicional> buscarServicosPorPedido(int idPedido) {
+        List<ServicoAdicional> lista = new ArrayList<>();
+        String sql = "SELECT s.idServicoAdicional, s.nome, s.descricao, ps.quantidade, ps.preco_unitario " +
+                "FROM PedidoServico ps " +
+                "JOIN ServicoAdicional s ON ps.ServicoAdicional_idServicoAdicional = s.idServicoAdicional " +
+                "WHERE ps.Pedido_idPedido = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idPedido);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                ServicoAdicional servico = new ServicoAdicional(
+                        rs.getString("nome"),
+                        rs.getString("descricao"),
+                        rs.getDouble("preco_unitario")
+                );
+                servico.setIdServicoAdicional(rs.getInt("idServicoAdicional"));
+                lista.add(servico);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+
 }
 
 
