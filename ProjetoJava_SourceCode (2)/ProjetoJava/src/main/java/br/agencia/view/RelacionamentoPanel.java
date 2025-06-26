@@ -35,7 +35,6 @@ public class RelacionamentoPanel extends JPanel {
 
     private void initComponents() {
         subTabbedPane = new JTabbedPane();
-        subTabbedPane.addTab("Contratar Pacote", criarPainelContratarPacote());
         subTabbedPane.addTab("Adicionar Serviço", criarPainelAdicionarServico());
         subTabbedPane.addTab("Pacotes por Cliente", criarPainelPacotesPorCliente());
         subTabbedPane.addTab("Clientes por Pacote", criarPainelClientesPorPacote());
@@ -43,47 +42,6 @@ public class RelacionamentoPanel extends JPanel {
 
 
         add(subTabbedPane, BorderLayout.CENTER);
-    }
-
-    private JPanel criarPainelContratarPacote() {
-        JPanel panel = new JPanel(new GridLayout(3, 2));
-
-        JTextField clienteIdField = new JTextField();
-        JTextField pacoteIdField = new JTextField();
-
-        JButton contratarBtn = new JButton("Contratar Pacote");
-        contratarBtn.addActionListener(e -> {
-            try {
-                int idCliente = Integer.parseInt(clienteIdField.getText());
-                int idPacote = Integer.parseInt(pacoteIdField.getText());
-
-                Cliente cliente = clienteDao.buscarPorId(idCliente);
-                PacoteViagem pacote = pacoteViagemDao.buscarPorId(idPacote);
-
-                if (cliente == null) {
-                    JOptionPane.showMessageDialog(this, "Cliente não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                if (pacote == null) {
-                    JOptionPane.showMessageDialog(this, "Pacote não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                Pedido pedido = new Pedido(idCliente, idPacote, LocalDate.now(), pacote.getPreco());
-                pedidoDao.cadastrar(pedido);
-                JOptionPane.showMessageDialog(this, "Pacote contratado com sucesso!");
-                clienteIdField.setText("");
-                pacoteIdField.setText("");
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, "IDs devem ser números válidos!", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        });
-
-        panel.add(new JLabel("ID Cliente:")); panel.add(clienteIdField);
-        panel.add(new JLabel("ID Pacote:")); panel.add(pacoteIdField);
-        panel.add(new JLabel()); panel.add(contratarBtn);
-
-        return panel;
     }
 
     private JPanel criarPainelAdicionarServico() {
