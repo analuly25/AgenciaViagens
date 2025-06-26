@@ -44,7 +44,7 @@ public class ServicoAdicionalDAO {
 
             if (rs.next()) {
                 servico = new ServicoAdicional();
-                servico.setIdServicoAdicional(rs.getInt("idServico"));
+                servico.setIdServicoAdicional(rs.getInt("idServicoAdicional"));
                 servico.setNome(rs.getString("nome"));
                 servico.setDescricao(rs.getString("descricao"));
                 servico.setPreco(rs.getDouble("preco"));
