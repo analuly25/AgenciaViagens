@@ -133,12 +133,11 @@ public class PedidoDao {
 
     public List<Cliente> buscarClientesPorPacote(int idPacote) {
         List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT c.*, cn.cpf, ce.passaporte FROM Cliente c " +
-                     "JOIN Pedido p ON c.idClientes = p.idClientes " +
-                     "LEFT JOIN ClienteNacional cn ON c.idClientes = cn.idClientes " +
-                     "LEFT JOIN ClienteEstrangeiro ce ON c.idClientes = ce.idClientes " +
-                     "WHERE p.idPacoteViagem = ?";
-
+        String sql =  "SELECT c.*,                               " + 
+                "IFNULL(c.cpf, c.passaporte) AS documento " +
+                "FROM   Clientes c                          " +
+                "JOIN   Pedido   p ON p.idClientes = c.idClientes " +
+                "WHERE  p.idPacoteViagem = ?";
         try (
                 Connection conn = ConnectionFactory.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
