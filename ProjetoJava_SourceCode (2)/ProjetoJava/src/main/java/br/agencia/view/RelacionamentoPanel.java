@@ -39,6 +39,8 @@ public class RelacionamentoPanel extends JPanel {
         subTabbedPane.addTab("Adicionar Serviço", criarPainelAdicionarServico());
         subTabbedPane.addTab("Pacotes por Cliente", criarPainelPacotesPorCliente());
         subTabbedPane.addTab("Clientes por Pacote", criarPainelClientesPorPacote());
+        subTabbedPane.addTab("Serviços por Pedido", criarPainelServicosPorPedido());
+
 
         add(subTabbedPane, BorderLayout.CENTER);
     }
@@ -123,6 +125,48 @@ public class RelacionamentoPanel extends JPanel {
 
         return panel;
     }
+
+    private JPanel criarPainelServicosPorPedido() {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        JPanel form = new JPanel(new FlowLayout());
+        JTextField pedidoIdField = new JTextField(10);
+        JButton buscarBtn = new JButton("Buscar");
+        form.add(new JLabel("ID Pedido:"));
+        form.add(pedidoIdField);
+        form.add(buscarBtn);
+
+        DefaultTableModel tableModel = new DefaultTableModel(new Object[]{"ID Serviço", "Nome", "Descrição", "Preço"}, 0);
+        JTable tabela = new JTable(tableModel);
+        JScrollPane scrollPane = new JScrollPane(tabela);
+
+        buscarBtn.addActionListener(e -> {
+            try {
+                int idPedido = Integer.parseInt(pedidoIdField.getText());
+                List<ServicoAdicional> servicos = pedidoDao.buscarServicosPorPedido(idPedido);
+                tableModel.setRowCount(0);
+                if (servicos.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Nenhum serviço encontrado para este pedido.", "Busca", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    for (ServicoAdicional servico : servicos) {
+                        tableModel.addRow(new Object[]{
+                                servico.getIdServicoAdicional(),
+                                servico.getNome(),
+                                servico.getDescricao(),
+                                servico.getPreco()
+                        });
+                    }
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "ID inválido! Digite um número.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        panel.add(form, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+        return panel;
+    }
+
 
     private JPanel criarPainelPacotesPorCliente() {
         JPanel panel = new JPanel(new BorderLayout());
